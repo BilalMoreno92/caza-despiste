@@ -9,6 +9,7 @@ dotenv.config();
 
 // parsea las peticiones a JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // añade los enrutadores para la versión 1
 app.use('/v1/clases', clases1Router);

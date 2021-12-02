@@ -1,32 +1,49 @@
 import poolDB from '../config/db.config.mjs';
 
-// constructor
-const despiste = (despiste) => {
-    this.id = despiste.id;
-    this.instante = despiste.instante;
-    this.clase = despiste.clase;
-    this.dispositivo = despiste.dispositivo;
-}
+class Despiste {
 
-despiste.list = (result) => {
-    poolDB.getConnection((err, conn) => {
-        if (err) {
-            result(null, err);
-            return;
-        };
-        conn.query('SELECT * FROM despistes', (error, rows, fields) => {
-            if (error) {
-                result(null, error);
-            } else {
-                result(null, rows);
-            }
+    constructor(data) {
+        this.id = data.id;
+        this.instante = data.instante;
+        this.clase = data.clase;
+        this.dispositivo = data.dispositivo;
+    }
+
+    static list = (result) => {
+        poolDB.getConnection((err, conn) => {
+            if (err) {
+                result(null, err);
+                return;
+            };
+            conn.query('SELECT * FROM despistes', (error, rows, fields) => {
+                if (error) {
+                    result(null, error);
+                } else {
+                    result(null, rows);
+                }
+            });
+            conn.release();
         });
-        conn.release();
-    });
+    }
+
+    static add = (data, result) => {
+        poolDB.getConnection((err, conn) => {
+            if (err) {
+                result(err, null);
+                return;
+            }
+            conn.query('INSERT INTO despistes SET ?', data, (error, row) => {
+                if (error) {
+                    result(error, null);
+                } else {
+                    data.id = row.insertId;
+                    result(null, data);
+                }
+            });
+            conn.release();
+        });
+    }
+
 }
 
-despiste.add = (data, result) => {
-
-}
-
-export default despiste;
+export default Despiste;

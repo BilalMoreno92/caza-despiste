@@ -1,33 +1,50 @@
 import poolDB from '../config/db.config.mjs';
 
-// constructor
-const clase = (clase) => {
-    this.id = clase.id;
-    this.codigo = clase.codigo;
-    this.nombre = clase.nombre;
-    this.descripcion = clase.descripcion;
-    this.activa = clase.activa;
-}
+class Clase {
 
-clase.list = (result) => {
-    poolDB.getConnection((err, conn) => {
-        if (err) {
-            result(null, err);
-            return;
-        };
-        conn.query('SELECT * FROM clases', (error, rows, fields) => {
-            if (error) {
-                result(null, error);
-            } else {
-                result(null, rows);
+    constructor(data) {
+        this.id = data.id;
+        this.codigo = data.codigo;
+        this.nombre = data.nombre;
+        this.descripcion = data.descripcion;
+        this.activa = data.activa;
+    }
+
+    static list = (result) => {
+        poolDB.getConnection((err, conn) => {
+            if (err) {
+                result(err, null);
+                return;
             }
+            conn.query('SELECT * FROM clases', (error, rows, fields) => {
+                if (error) {
+                    result(err, null);
+                } else {
+                    result(null, rows);
+                }
+            });
+            conn.release();
         });
-        conn.release();
-    });
-}
+    }
 
-clase.add = (data, result) => {
+    static add = (data, result) => {
+        poolDB.getConnection((err, conn) => {
+            if (err) {
+                result(err, null);
+                return;
+            }
+            conn.query('INSERT INTO clases SET ?', data, (error, row) => {
+                if (error) {
+                    result(error, null);
+                } else {
+                    data.id = row.insertId;
+                    result(null, data);
+                }
+            });
+            conn.release();
+        });
+    }
     
 }
 
-export default clase;
+export default Clase;
