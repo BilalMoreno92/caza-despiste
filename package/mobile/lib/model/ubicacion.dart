@@ -19,3 +19,10 @@ class Ubicacion {
     "aula": aula,
   };
 }
+
+final List<Ubicacion> demoUbicaciones = [
+  Ubicacion(aula: "101"),
+  Ubicacion(aula: "102"),
+  Ubicacion(aula: "201"),
+  Ubicacion(aula: "202")
+];
