@@ -1,0 +1,31 @@
+{
+  "name": "caza-despistes",
+  "description": "API REST de la aplicación Caza Despistes",
+  "version": "0.1.0-SNAPSHOT",
+  "author": "Gestión de Proyectos 2021 <gestiproyectos2021@gmail.com>",
+  "contributors": [
+    "Rafael Cano Parra",
+    "Karim Cheabi Rachic",
+    "Daniel Enrique Faria Puentes",
+    "Nyla Rocío García González",
+    "Vicente Antonio Juan Magallanes",
+    "Manuela Maciá Antón",
+    "Bilal Moreno Ahmed",
+    "Alberto Sanglier Contreras"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
