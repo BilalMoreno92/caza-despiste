@@ -7,17 +7,23 @@ class Ubicacion {
 
   String aula;
 
-  factory Ubicacion.fromRawJson(String str) => Ubicacion.fromJson(json.decode(str));
+  factory Ubicacion.fromRawJson(String str) =>
+      Ubicacion.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory Ubicacion.fromJson(Map<String, dynamic> json) => Ubicacion(
-    aula: json["aula"],
-  );
+        aula: json["aula"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "aula": aula,
-  };
+        "aula": aula,
+      };
+
+  @override
+  String toString() {
+    return 'aula $aula';
+  }
 }
 
 final List<Ubicacion> demoUbicaciones = [

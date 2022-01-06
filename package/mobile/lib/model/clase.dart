@@ -27,17 +27,33 @@ class Clase {
         "timestamp": timestamp,
         "ubicacion": ubicacion.toJson(),
       };
+
+  @override
+  String toString() {
+    return '$asignatura, $ubicacion';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Clase &&
+          runtimeType == other.runtimeType &&
+          asignatura == other.asignatura &&
+          ubicacion == other.ubicacion;
+
+  @override
+  int get hashCode => asignatura.hashCode ^ ubicacion.hashCode;
 }
 
 final List<Clase> demoClases = [
-  Clase(ubicacion: demoUbicaciones[0], asignatura: 'Química'),
   Clase(ubicacion: demoUbicaciones[0], asignatura: 'Física'),
-  Clase(ubicacion: demoUbicaciones[0], asignatura: 'Química avanzada'),
   Clase(ubicacion: demoUbicaciones[1], asignatura: 'Física'),
-  Clase(ubicacion: demoUbicaciones[1], asignatura: 'Química avanzada'),
-  Clase(ubicacion: demoUbicaciones[1], asignatura: 'Química'),
-  Clase(ubicacion: demoUbicaciones[2], asignatura: 'Matemáticas'),
   Clase(ubicacion: demoUbicaciones[2], asignatura: 'Física avanzada'),
-  Clase(ubicacion: demoUbicaciones[3], asignatura: 'Matemáticas'),
   Clase(ubicacion: demoUbicaciones[3], asignatura: 'Física avanzada'),
+  Clase(ubicacion: demoUbicaciones[0], asignatura: 'Química'),
+  Clase(ubicacion: demoUbicaciones[1], asignatura: 'Química'),
+  Clase(ubicacion: demoUbicaciones[0], asignatura: 'Química avanzada'),
+  Clase(ubicacion: demoUbicaciones[1], asignatura: 'Química avanzada'),
+  Clase(ubicacion: demoUbicaciones[2], asignatura: 'Matemáticas'),
+  Clase(ubicacion: demoUbicaciones[3], asignatura: 'Matemáticas'),
 ];
